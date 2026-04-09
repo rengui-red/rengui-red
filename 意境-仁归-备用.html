@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>【艺境仁归  自然之梦  】   |    聚光成束，安心为家</title>
+    <meta name="description" content="仁归，以科技为舟，载人文之魂，打造属于每个人的线上精神家园与心灵驿站">
+    <style>
+        /* 全局样式：中式禅意美学 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --primary: #8B7355; /* 中式茶褐色，主色调 */
+            --secondary: #A67C52; /* 暖棕，辅助色 */
+            --light: #F5F1E8; /* 米白，背景色 */
+            --dark: #2C2C2C; /* 深灰，文字色 */
+            --accent: #D4A574; /* 暖金，强调色 */
+        }
+        body {
+            font-family: "Noto Serif SC", "Microsoft Yahei", serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.8;
+        }
+        /* 导航栏 */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 241, 232, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 999;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: 0.2rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        /* 移动端菜单按钮 */
+        .menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        /* 首屏banner */
+        .banner {
+            height: 100vh;
+            background: linear-gradient(rgba(139, 115, 85, 0.1), rgba(139, 115, 85, 0.2)), url('https://picsum.photos/id/1018/1920/1080') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+        }
+        .banner h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            letter-spacing: 0.5rem;
+        }
+        .banner p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.3);
+        }
+        .btn {
+            padding: 0.8rem 2.5rem;
+            background: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .btn:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        /* 通用区块样式 */
+        .section {
+            padding: 6rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--accent);
+        }
+        /* 项目理念区块 */
+        .concept {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .concept-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+        .concept-card:hover {
+            transform: translateY(-8px);
+        }
+        .concept-card h3 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        /* 项目介绍区块 */
+        .project {
+            background: rgba(139, 115, 85, 0.05);
+        }
+        .project-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        .project-text h3 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        .project-img {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .project-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* 博客/自留地区块 */
+        .blog {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .blog-content {
+            padding: 1.5rem;
+        }
+        .blog-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+        }
+        /* 捐赠区块 */
+        .donate {
+            background: var(--primary);
+            color: white;
+            text-align: center;
+        }
+        .donate .section-title {
+            color: white;
+        }
+        .donate .section-title::after {
+            background: var(--accent);
+        }
+        .donate-qr {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+        .qr-item {
+            text-align: center;
+        }
+        .qr-item img {
+            width: 200px;
+            height: 200px;
+            border-radius: 12px;
+            background: white;
+            padding: 10px;
+            margin-bottom: 1rem;
+        }
+        /* 页脚 */
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem 5%;
+        }
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .menu-btn {
+                display: block;
+            }
+            .banner h1 {
+                font-size: 2.2rem;
+                letter-spacing: 0.2rem;
+            }
+            .banner p {
+                font-size: 1.2rem;
+            }
+            .project-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- 引入中文字体 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap">
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="logo">【艺境仁归  自然之梦】</div>
+        <ul class="nav-links">
+            <li><a href="#home">首页</a></li>
+            <li><a href="#concept">核心理念</a></li>
+            <li><a href="#project">项目介绍</a></li>
+            <li><a href="#blog">自由自留地</a></li>
+            <li><a href="#donate">支持我们</a></li>
+        </ul>
+        <button class="menu-btn">☰</button>
+    </nav>
+
+    <!-- 首屏Banner -->
+    <section class="banner" id="home">
+        <h1>聚光成束，安心为家</h1>
+        <p>以科技为舟，载人文之魂，打造属于每个人的线上精神家园与心灵驿站</p>
+        <a href="#concept" class="btn">了解仁归</a>
+    </section>
+
+    <!-- 核心理念区块 -->
+    <section class="section" id="concept">
+        <h2 class="section-title">核心理念</h2>
+        <div class="concept">
+            <div class="concept-card">
+                <h3>心灵驿站</h3>
+                <p>为每一个奔波的灵魂提供喘息的空间，让灵心驻足，片刻喘息，在数字世界里拥有一片属于自己的精神自留地。</p>
+            </div>
+            <div class="concept-card">
+                <h3>人文关怀</h3>
+                <p>坚持技术服务于人，而非绑架人。以「仁」为核心，用AI传递温度，守护每一份情感与隐私，让科技有温度。</p>
+            </div>
+            <div class="concept-card">
+                <h3>共建共享</h3>
+                <p>开放的共建模式，欢迎每一位同频者参与家园建设，让不同的声音汇聚，共同打造有生命力的精神共同体。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目介绍区块 -->
+    <section class="section project" id="project">
+        <h2 class="section-title">项目介绍</h2>
+        <div class="project-content">
+            <div class="project-text">
+                <h3>艺境仁归 · 真维谷</h3>
+                <p>「仁归」是一个以人文关怀为核心的AI赋能项目，致力于用技术搭建线上精神家园，为用户提供情感陪伴、心灵疗愈、自由创作的空间。</p>
+                <p>我们坚持「科技向善」，严格守护用户隐私，拒绝数据滥用，让AI成为温暖的陪伴者，而非冰冷的工具。</p>
+                <p>项目包含「艺境仁归」人文艺术平台与「真维谷」深度心灵空间两大核心板块，未来将逐步开放多端访问，打造全场景的精神栖息地。</p>
+                <a href="#" class="btn" style="margin-top: 1.5rem; display: inline-block;">项目白皮书</a>
+            </div>
+            <div class="project-img">
+                <img src="https://picsum.photos/id/1015/800/600" alt="仁归项目理念图">
+            </div>
+        </div>
+    </section>
+
+    <!-- 自由自留地/博客区块 -->
+    <section class="section" id="blog">
+        <h2 class="section-title">自由自留地</h2>
+        <div class="blog">
+            <div class="blog-card">
+                <img src="https://picsum.photos/id/1025/600/400" alt="博客文章">
+                <div class="blog-content">
+                    <h3>科技与人文的共生之道</h3>
+                    <p>在AI时代，我们如何让技术服务于人性，而非异化人性？这是「仁归」始终在探索的核心命题。</p>
+                    <a href="#" class="btn" style="margin-top: 1rem; padding: 0.5rem 1.5rem; font-size: 1rem;">阅读全文</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://picsum.photos/id/1039/600/400" alt="博客文章">
+                <div class="blog-content">
+                    <h3>从公益理想走向可持续运营</h3>
+                    <p>「仁归」的商业化探索：如何在坚守人文初心的同时，实现项目的长期健康发展。</p>
+                    <a href="#" class="btn" style="margin-top: 1rem; padding: 0.5rem 1.5rem; font-size: 1rem;">阅读全文</a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <img src="https://picsum.photos/id/1041/600/400" alt="博客文章">
+                <div class="blog-content">
+                    <h3>真维谷：深度心灵空间的设计哲学</h3>
+                    <p>如何用数字技术，打造一个能让人真正静下心来、与自我对话的精神空间？</p>
+                    <a href="#" class="btn" style="margin-top: 1rem; padding: 0.5rem 1.5rem; font-size: 1rem;">阅读全文</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 捐赠支持区块 -->
+    <section class="section donate" id="donate">
+        <h2 class="section-title">支持仁归</h2>
+        <p style="max-width: 800px; margin: 0 auto 2rem; font-size: 1.2rem;">「仁归」的成长离不开每一位同频者的支持，您的每一份善意，都将成为家园建设的力量</p>
+        <div class="donate-qr">
+            <div class="qr-item">
+                <img src="https://via.placeholder.com/200/FFFFFF/000000?text=微信+收款码" alt="微信收款码">
+                <p>微信扫码支持</p>
+            </div>
+            <div class="qr-item">
+                <img src="https://via.placeholder.com/200/FFFFFF/000000?text=支付宝+收款码" alt="支付宝收款码">
+                <p>支付宝扫码支持</p>
+            </div>
+        </div>
+        <p style="margin-top: 2rem;">感谢您的支持，我们将用每一笔捐款，持续优化产品，守护精神家园</p>
+    </section>
+
+    <!-- 页脚 -->
+    <footer>
+        <p>© 2026 【艺境  仁归  自然之梦】 · 聚光成束，安心为家。</p>
+        <p style="margin-top: 0.5rem; opacity: 0.7;">以科技载人文，让心灵有归处。</p>
+        </p>
+        </p>创意创建开发者：          南山居士  /  尘间盲克</p>
+        </p>创意创建技术协助：      DBJSZ</p>
+        </p>版权所有，彼此珍重。
+        </footer>
+
+
+    <!-- 简单JS：移动端菜单 -->
+    <script>
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        menuBtn.addEventListener('click', () => {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+            navLinks.style.flexDirection = 'column';
+            navLinks.style.position = 'absolute';
+            navLinks.style.top = '100%';
+            navLinks.style.left = 0;
+            navLinks.style.width = '100%';
+            navLinks.style.background = 'rgba(245, 241, 232, 0.95)';
+            navLinks.style.padding = '1rem 5%';
+        });
+    </script>
+</body>
+</html>
